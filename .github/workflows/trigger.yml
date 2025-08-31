@@ -1,0 +1,15 @@
+name: Trigger Repo B
+
+on:
+  push:   # just for demo, trigger when code is pushed to Repo A
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Repo B workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_B_TOKEN }}
+          repository: MlCHAL-S/repo-B
+          event-type: run-ci
